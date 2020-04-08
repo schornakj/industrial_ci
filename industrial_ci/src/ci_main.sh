@@ -35,6 +35,8 @@ source "${ICI_SRC_PATH}/env.sh"
 
 trap ici_exit EXIT # install industrial_ci exit handler
 
+ici_warn WARNING: this is the legacy version of industrial_ci. The default branch will be switched to the new version on June 8, 2020.
+
 # Start prerelease, and once it finishs then finish this script too.
 if [ "$PRERELEASE" == true ]; then
   # shellcheck source=industrial_ci/src/tests/ros_prerelease.sh
