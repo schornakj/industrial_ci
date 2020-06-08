@@ -148,6 +148,7 @@ function ici_docker_build() {
   if [ "$DOCKER_PULL" != false ]; then
     build_opts+=("--pull")
   fi
+  echo "docker image:" $DOCKER_IMAGE
   docker build -t "$DOCKER_IMAGE" "${build_opts[@]}" "$@"
 }
 
@@ -177,7 +178,7 @@ function ici_prepare_docker_image() {
   ici_time_start prepare_docker_image
 
   if [ -n "$DOCKER_FILE" ]; then # docker file was provided
-    DOCKER_IMAGE=${DOCKER_IMAGE:"industrial-ci/custom"}
+    DOCKER_IMAGE=${DOCKER_IMAGE:-"industrial-ci/custom"}
     if [ -f "$TARGET_REPO_PATH/$DOCKER_FILE" ]; then # if single file, run without context
        ici_quiet ici_docker_build - < "$TARGET_REPO_PATH/$DOCKER_FILE"
     elif [ -d "$TARGET_REPO_PATH/$DOCKER_FILE" ]; then # if path, run with context
