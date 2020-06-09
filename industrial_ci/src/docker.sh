@@ -149,6 +149,8 @@ function ici_docker_build() {
     build_opts+=("--pull")
   fi
   echo "docker image:" $DOCKER_IMAGE
+  echo "options: " ${build_opts[@]}
+  echo "directory: " $@
   docker build -t "$DOCKER_IMAGE" "${build_opts[@]}" "$@"
 }
 
